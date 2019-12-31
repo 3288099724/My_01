@@ -15,5 +15,8 @@ public class App {
 
     public void test() {
         System.out.println("hahah");
+        System.out.println("hUHU");
+
+
     }
 }
