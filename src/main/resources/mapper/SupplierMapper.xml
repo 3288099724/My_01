@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.bs.dao.SupplierDAO">
+    <!--type ,制定自己的缓存实现-->
+   <!-- <cache type="com.bs.cache.RedisCache"></cache>-->
+    <insert id="add" parameterType="com.bs.entity.Supplier">
+        insert into supplier values (#{id},#{name},#{leader},#{phone},#{create_date,jdbcType=NULL})
+    </insert>
+    <delete id="delete">
+        delete from supplier where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.bs.entity.Supplier">
+        update supplier set name=#{name},leader=#{leader},phone=#{phone} where id=#{id}
+    </update>
+
+    <select id="queryAll" resultType="com.bs.entity.Supplier">
+        select * from (select supplier.*,rownum r from supplier)
+        where r between #{begin} and #{end}
+    </select>
+
+    <select id="count" resultType="com.bs.entity.Supplier">
+        select * from supplier
+    </select>
+</mapper>
